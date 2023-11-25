@@ -1,24 +1,71 @@
-![logo_ironhack_blue 7](https://user-images.githubusercontent.com/23629340/40541063-a07a0a8a-601a-11e8-91b5-2f13e4e6b441.png)
+# Song Recommender
+***
 
-# Lab | Web Scraping Single Page (GNOD part 1)
+## Table of Contents
+1. [Project Overview](#project-overview)
+2. [Prerequisites](#prerequisites)
+3. [Setup](#setup)
+4. [Functionality](#functionality)
+5. [Note](#note)
+10. [Contributors](#contributors)
 
-#### Business goal:
 
-- Check the `case_study_gnod.md` file.
-- Make sure you've understood the big picture of your project:
+## Project Overview
+This Python project utilizes the Spotify API and machine learning techniques to recommend songs based on user input. The recommendation system incorporates both a list of top songs and a clustering model to provide diverse and personalized suggestions.
 
-  - the goal of the company (`Gnod`),
-  - their current product (`Gnoosic`),
-  - their strategy, and
-  - how your project fits into this context.
+## Prerequisites
+Ensure you have the following libraries installed:
 
-  Re-read the business case and the e-mail from the CTO.
+```bash
+pip install pandas regex spotipy scikit-learn
+```
 
-#### Instructions - Scraping popular songs
+## Setup
+1. Clone the repository:
+```bash
+git clone https://github.com/laiagomezmessia/lab-web-scraping-single-page.git
+```
 
-Your product will take a song as an input from the user and will output another song (the recommendation). In most cases, the recommended song will have to be similar to the inputted song, but the CTO thinks that if the song is on the top charts at the moment, the user will also enjoy a recommendation of another song that is popular at the moment.
+2. Create a Spotify Developer account and obtain your client ID and client secret.
+   
+3. Create a file named secrets.txt in the project root:
+```bash
+clientid: YOUR_CLIENT_ID
+clientsecret: YOUR_CLIENT_SECRET
+```
 
-You have to find data on the internet about currently popular songs. Popvortex maintains a weekly Top 100 of "hot" songs here: [http://www.popvortex.com/music/charts/top-100-songs.php](http://www.popvortex.com/music/charts/top-100-songs.php).
+4. Ensure you have the following CSV files in the project directory:
+top_songs.csv: List of top songs.
+playlist_df.csv: Playlist with relevant features.
 
-It's a good place to start! Scrape the current top 100 songs and their respective artists, and put the information into a pandas dataframe.
+5. Run the recommend_song function in SongRecommender.ipynb:
+```bash
+python song_recommender.py
+```
+Enter a song and its artist when prompted to receive a song recommendation.
 
+
+## Functionality
+The recommend_song function performs the following steps:
+
+1. Checks if the user-inputted song is in the top songs list. If yes, it recommends a random song from the remaining top songs.
+
+2. If the user-inputted song is not in the top songs list, it connects to the Spotify API, searches for the song, and retrieves its audio features.
+
+3. Uses a pre-trained KMeans clustering model to predict the cluster of the input song.
+
+4. Recommends a random song from the same cluster in the playlist DataFrame.
+
+5. Introduces a nap to avoid hitting rate limits when interacting with the Spotify API.
+
+
+## Note
+- The clustering model and scaler are loaded using pickle from files named kmean.pkl and scaler.pkl. Ensure these files are present in the project directory.
+
+- The script can be further extended to include additional features or improve the recommendation algorithm.
+
+Feel free to explore, modify, and enhance the project according to your preferences!
+
+
+## Contributors
+- [Laia Gómez Messía](https://github.com/laiagomezmessia)
