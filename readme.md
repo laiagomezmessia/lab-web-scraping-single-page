@@ -36,7 +36,7 @@ clientsecret: YOUR_CLIENT_SECRET
 
 4. Ensure you have the following CSV files in the project directory:
 top_songs.csv: List of top songs.
-playlist_df.csv: Playlist with relevant features.
+playlist_cluster_df.csv: Playlist with relevant features.
 
 5. Run the recommend_song function in SongRecommender.ipynb:
 ```bash
@@ -60,7 +60,7 @@ The recommend_song function performs the following steps:
 
 
 ## Note
-- The clustering model and scaler are loaded using pickle from files named kmean.pkl and scaler.pkl. Ensure these files are present in the project directory.
+- The clustering model and scaler are loaded using pickle from files named kmeans.pkl and X_prep.pkl. Ensure these files are present in the project directory.
 
 - The script can be further extended to include additional features or improve the recommendation algorithm.
 
